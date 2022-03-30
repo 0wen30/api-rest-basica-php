@@ -15,7 +15,6 @@ class Cliente{
             }
         }
         return $datos;
-        
     }
 
     public static function get($e){
@@ -53,10 +52,3 @@ class Cliente{
     }
 
 }
-
-//echo var_dump(Cliente::insert("jose","espinosa","estrada","20/10/19","m"));
-//echo var_dump(Cliente::getAll());
-//echo var_dump(Cliente::update(1,"aaa","aaa","aaa","20/10/19","f"));
-//echo var_dump(Cliente::delete(2));
-//echo var_dump(Cliente::getAll());
-//echo var_dump(Cliente::get(1));

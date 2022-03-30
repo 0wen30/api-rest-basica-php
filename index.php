@@ -10,15 +10,44 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         break;
     case 'POST':
-        
+        $datos = json_decode(file_get_contents('php://input'));
+        if($datos!=NULL){
+            if (Cliente::insert($datos->nombre,$datos->ap_paterno,$datos->ap_materno,$datos->fecha,$datos->genero)) {
+                http_response_code(200);
+            } else {
+                http_response_code(400);
+            }
+        }else{
+            http_response_code(405);
+        }
         break;
     case 'PUT':
-
+        $datos = json_decode(file_get_contents('php://input'));
+        if($datos!=NULL){
+            if (Cliente::update($datos->id,$datos->nombre,$datos->ap_paterno,$datos->ap_materno,$datos->fecha,$datos->genero)) {
+                http_response_code(200);
+            } else {
+                http_response_code(400);
+            }
+        }else{
+            http_response_code(405);
+        }
         break;
     case 'DELETE':
-
+        if(isset($_GET['id'])){
+            if (Cliente::delete($_GET['id'])) {
+                http_response_code(200);
+            } else {
+                http_response_code(400);
+            }
+        }else{
+            http_response_code(405);
+        }
         break;
-    
+    default:
+        http_response_code(405);
+        break;
+
 }
 
 ?>
